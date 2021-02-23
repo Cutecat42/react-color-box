@@ -1,8 +1,9 @@
-import React from "react"
+import React, {useState} from "react"
+import NewBoxForm from "./NewBoxForm"
 import Box from "./Box"
 
 const BoxList = () => {
-    const boxes = [
+    const initialState = [
         {
             id: 1,
             color: "purple",
@@ -22,9 +23,22 @@ const BoxList = () => {
             height: 300
         }
     ]
+
+    const [boxes, setBoxes] = useState(initialState)
+    const addBox = (color, width, height) => {
+        let n = boxes.length
+        setBoxes(b=>[...b, {
+            id: [n+1],
+            color,
+            width: Number(width),
+            height: Number(height)
+        }])
+        console.log(boxes)
+    }
+
     return (
         <div>
-            "Hello"
+            <NewBoxForm addBox={addBox}/>
             {
             boxes.map(b=><p><Box key={b.id} color={b.color} width={b.width} height={b.height}/></p>)
             }
