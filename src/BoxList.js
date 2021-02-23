@@ -26,21 +26,33 @@ const BoxList = () => {
 
     const [boxes, setBoxes] = useState(initialState)
     const addBox = (color, width, height) => {
-        let n = boxes.length
+        let n = boxes[boxes.length-1].id
         setBoxes(b=>[...b, {
-            id: [n+1],
+            id: Number(n)+1,
             color,
             width: Number(width),
             height: Number(height)
         }])
-        console.log(boxes)
+    }
+
+    const remove = (id) => {
+        setBoxes(b=>{
+            const newArr = [...b]
+            for (let i=0;i<newArr.length;i++) {
+                if (newArr[i].id === id) {
+                    newArr.splice(i,1)
+                }
+            }
+            return newArr
+        })
+        return boxes
     }
 
     return (
-        <div>
+        <div style={{marginLeft: 40}}>
             <NewBoxForm addBox={addBox}/>
             {
-            boxes.map(b=><p><Box key={b.id} color={b.color} width={b.width} height={b.height}/></p>)
+            boxes.map(b=><Box key={b.id} color={b.color} width={b.width} height={b.height} id={b.id} remove={remove}/>)
             }
         </div>
     )

@@ -1,3 +1,5 @@
 .Box {
-    float: left
+    float: left;
+    text-align: center;
+    margin-top: 20px
 }

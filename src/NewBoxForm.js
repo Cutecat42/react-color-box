@@ -25,7 +25,7 @@ const NewBoxForm = ({addBox}) => {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} style={{marginTop: 30, marginLeft: 40}}>
             <label htmlFor="color">Color of Box</label>
             <input 
             type="text"
